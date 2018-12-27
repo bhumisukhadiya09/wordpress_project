@@ -67,7 +67,7 @@ class consult_wp_bootstrap_navwalker extends Walker_Nav_Menu {
 
 			$class_names = $class_names ? ' class="' . esc_attr( $class_names ) . '"' : '';
 			if ( $args->has_children ){
-				$class_names = $class_names ? ' class="sub-menu ' . esc_attr( $class_names ) . '"' : '';
+				$class_names = $class_names ? ' class="sub-menu78787 ' . esc_attr( $class_names ) . '"' : '';
 			}
 
 			$id = apply_filters( 'nav_menu_item_id', 'menu-item-'. $item->ID, $item, $args );
