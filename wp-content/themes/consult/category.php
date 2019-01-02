@@ -22,7 +22,29 @@ get_header(); ?>
           <div class="row blog-with-sidebar">
               <div class="blog-content col col-lg-9 col-md-8">
                   <div class="row blog-section-grids">
-                   <?php
+                      <div class="careers-vacancy-content">
+                          <div class="vacancy-details">
+                  <div class="job-tab">
+<div class="nav-wrapper">
+<ul class="nav">
+     <li class="active"><a href="#all" data-toggle="tab">ALL</a></li>
+     <?php
+    //  $categories = get_categories();
+     $categories = get_categories(array('exclude'=>array(get_cat_ID('uncategorized'))));
+     foreach( $categories as $category ) {
+         echo "<li><a href='#".$category->slug."' data-toggle='tab'>".$category->name."</a></li>";
+     }
+     ?>
+</ul>
+</div>
+<div class="tab-content">
+<div id="all" class="tab-pane fade">
+ALL DATA <br/>
+<hr>
+<?php
+                   $args = array('post_type'=>array('product'));
+
+  query_posts($args);
                           while (have_posts()): the_post(); 
                         ?>
                       <div class="post" >
@@ -66,7 +88,54 @@ get_header(); ?>
                         <hr>
                       <?php endwhile; ?>
                   </div>
+</div>
+<?php
+foreach( $categories as $category ) {
+    echo "<div id='".$category->slug."' class='tab-pane fade'>
+<b>".$category->name."</b><br/>
+<b>".$category->name."</b><br/>
+<hr/>";
+?>
+<?php
+                   $args = array('post_type'=>array('product'));
+  query_posts($args);
+  echo "<pre>";
+  echo have_posts();
+                          while (have_posts()): the_post(); 
+                        ?>
+                      <div class="post" >
+                            <div class="entry-media">
+                                <?php if ( has_post_thumbnail() ) { ?>
+                                  <?php the_post_thumbnail(); ?>
+                                <?php }?>
+                              </div>
+                              <div class="entry-title">
+                                  <h3><?php the_title();?></h3>
+                              </div>
+                              <div class="entry-details">
+                                  <p>
+                                    <?php if(isset($consult_redux_demo['blog_excerpt'])){?>
+                                      <?php echo esc_attr(consult_excerpt($consult_redux_demo['blog_excerpt'])); ?>
+                                      <?php }else{?>
+                                      <?php echo esc_attr(consult_excerpt(40));
+                                      }
+                                    ?>
+                                  </p>
+                              </div>
+                        </div> <!-- end post -->
+                      <?php endwhile; ?>
+                  </div>
 
+<?php
+echo "</div>";
+}
+?>
+
+</div>
+</div>
+</div>
+</div>
+                   
                   <div class="row page-pagination-wrapper">
                       <div class="col col-xs-12">
                           <div class="page-pagination">
