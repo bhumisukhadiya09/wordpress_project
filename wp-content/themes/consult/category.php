@@ -17,10 +17,10 @@ get_header(); ?>
     </section>
 
     <!-- start blog-with-sidebar-section -->
-     <section class="blog-with-sidebar-section section-padding">
+     <section class="blog-with-sidebar-section">
       <div class="container">
           <div class="row blog-with-sidebar">
-              <div class="blog-content col col-lg-9 col-md-8">
+              <div class="blog-content col col-lg-12 col-md-12">
                   <div class="row blog-section-grids">
                       <div class="careers-vacancy-content">
                           <div class="vacancy-details">
@@ -39,95 +39,63 @@ get_header(); ?>
 </div>
 <div class="tab-content">
 <div id="all" class="tab-pane fade">
-ALL DATA <br/>
-<hr>
+<div class='list-products'>
 <?php
-                   $args = array('post_type'=>array('product'));
-
-  query_posts($args);
-                          while (have_posts()): the_post(); 
-                        ?>
-                      <div class="post" >
-                            <div class="entry-media">
-                                <?php if ( has_post_thumbnail() ) { ?>
-                                  <?php the_post_thumbnail(); ?>
-                                <?php }?>
+$posts = get_posts([
+    'post_type' => 'product'
+  ]);
+  foreach($posts as $post){
+?>
+    <div class="post-product" >
+    <div class="entry-media-product">
+        <img width="200" height="200" src="<?php echo get_the_post_thumbnail_url($post->ID, 'full')?>">
+      </div>
+      <div class="entry-title-product">
+                                  <h3><?php echo $post->post_title;?></h3>
+                                  
                               </div>
-                              <div class="entry-title">
-                                  <h3><a href="<?php the_permalink();?>"><?php the_title();?></a></h3>
-                                  <?php if ( is_sticky() )
-                                  echo '<span class="featured-post">' . esc_html__( 'Sticky Template', 'consult' ) . '</span>';
-                                   ?>
-                              </div>
-                              <div class="entry-meta">
-                                  <ul>
-                                      <li><a href="#"><i class="fa fa-clock-o"></i><?php the_time(get_option( 'date_format' ));?></a></li>
-                                      <li><a href="#"><i class="fa fa-comments"></i> <span><span><?php comments_popup_link( esc_html__(' 0 comment', 'consult'), esc_html__(' 1 comment', 'consult'), ' % comments'.__('', 'consult'), '', esc_html__(' Comment Off', 'consult')); ?></span></a></li>
-                                  </ul>
-                              </div>
-                              <div class="entry-details">
+                              <div class="entry-details-product">
                                   <p>
-                                    <?php if(isset($consult_redux_demo['blog_excerpt'])){?>
-                                      <?php echo esc_attr(consult_excerpt($consult_redux_demo['blog_excerpt'])); ?>
-                                      <?php }else{?>
-                                      <?php echo esc_attr(consult_excerpt(40));
-                                      }
-                                    ?>
-                                  </p>
-
-                                  <a href="<?php the_permalink();?>" class="read-more">
-                                    <?php if(isset($consult_redux_demo['read_more'])){?>
-                                      <?php echo htmlspecialchars_decode(esc_attr($consult_redux_demo['read_more']));?>
-                                      <?php }else{?>
-                                        <?php echo esc_html__( 'Read More', 'consult' );
-                                      }
-                                    ?>
-                                  </a>
-                              </div>
-                        </div> <!-- end post -->
-                        <hr>
-                      <?php endwhile; ?>
-                  </div>
-</div>
+                             <?php echo $post->post_content;?>
+                             </p>
+                             <?php echo get_post_meta($post->ID,"price",true); ?>
+                             </div>
+  </div>
+  <?php }
+echo '</div></div>';
+?>
 <?php
 foreach( $categories as $category ) {
     echo "<div id='".$category->slug."' class='tab-pane fade'>
-<b>".$category->name."</b><br/>
-<b>".$category->name."</b><br/>
-<hr/>";
+<div class='list-products'>";
+$posts = get_posts([
+    'post_type' => 'product',
+    // 'post_status' => 'publish',
+    // 'numberposts' => -1,
+    'category'=>$category->cat_ID
+    // 'order'    => 'ASC'
+  ]);
+//   echo "<pre>";
+  foreach($posts as $post){
+// print_r($post);
 ?>
-<?php
-                   $args = array('post_type'=>array('product'));
-  query_posts($args);
-  echo "<pre>";
-  echo have_posts();
-                          while (have_posts()): the_post(); 
-                        ?>
-                      <div class="post" >
-                            <div class="entry-media">
-                                <?php if ( has_post_thumbnail() ) { ?>
-                                  <?php the_post_thumbnail(); ?>
-                                <?php }?>
+    <div class="post-product" >
+    <div class="entry-media-product">
+        <img width="200" height="200" src="<?php echo get_the_post_thumbnail_url($post->ID, 'full')?>">
+      </div>
+      <div class="entry-title-product">
+                                  <h3><?php echo $post->post_title;?></h3>
+                                  
                               </div>
-                              <div class="entry-title">
-                                  <h3><?php the_title();?></h3>
-                              </div>
-                              <div class="entry-details">
+                              <div class="entry-details-product">
                                   <p>
-                                    <?php if(isset($consult_redux_demo['blog_excerpt'])){?>
-                                      <?php echo esc_attr(consult_excerpt($consult_redux_demo['blog_excerpt'])); ?>
-                                      <?php }else{?>
-                                      <?php echo esc_attr(consult_excerpt(40));
-                                      }
-                                    ?>
-                                  </p>
-                              </div>
-                        </div> <!-- end post -->
-                      <?php endwhile; ?>
-                  </div>
-
-<?php
-echo "</div>";
+                             <?php echo $post->post_content;?>
+                             </p>
+                             <?php echo get_post_meta($post->ID,"price",true); ?>
+                             </div>
+      </div>
+  <?php }
+echo '</div></div>';
 }
 ?>
 
@@ -135,19 +103,9 @@ echo "</div>";
 </div>
 </div>
 </div>
-                   
-                  <div class="row page-pagination-wrapper">
-                      <div class="col col-xs-12">
-                          <div class="page-pagination">
-                              <?php consult_pagination();?>
-                          </div>
-                      </div>
-                  </div>                        
+</div>                    
               </div> <!-- end blog-content -->
-
-              <div class="blog-sidebar col col-lg-3 col-md-4 col-sm-5">
-                  <?php get_sidebar();?>
-              </div>                    
+                 
           </div>
       </div> <!-- end container -->
   </section>

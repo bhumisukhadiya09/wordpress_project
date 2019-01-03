@@ -7325,7 +7325,8 @@ nav.sticky, .site-header-style2 nav.sticky2, .site-header-style3 nav.sticky2, .s
   font-size: 1.125rem;
   font-weight: bold;
   color: #f39c12;
-  padding: 10px 45px;
+  /* padding: 10px 45px; */
+  padding: 10px 20px;
 }
 
 @media (max-width: 767px) {
@@ -8794,3 +8795,26 @@ nav.sticky, .site-header-style2 nav.sticky2, .site-header-style3 nav.sticky2, .s
   border-radius: 5px;
 }
 
+.list-products {
+width: 100%;
+display: inline-flex;
+}
+.post-product {
+width: 33.33%;
+padding: 10px;
+    text-align: center;
+    width: 33.33%;
+    padding: 15px;
+    text-align: center;
+    border: 2px double;
+    margin: 10px;
+}
+.entry-media-product {
+
+}
+.entry-title-product {
+
+}
+.entry-details-product {
+
+}
