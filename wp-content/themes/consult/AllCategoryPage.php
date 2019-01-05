@@ -1,3 +1,5 @@
+	
+<?php /* Template Name: AllCategoryPage */ ?>
 <?php
 $consult_redux_demo = get_option('redux_demo');
 get_header(); ?>
@@ -5,12 +7,7 @@ get_header(); ?>
 <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
   $(window).on('load', function() {
-    var path = window.location.pathname;
-    var res = path.split("/");
-    var filtered = res.filter(Boolean);
-    var last_elem = filtered[filtered.length - 1];
-    console.log(last_elem);
-    $("#"+last_elem+"-nav").click();
+    $("#all-nav").click();
   });
 
 </script>
@@ -18,11 +15,11 @@ get_header(); ?>
   <div class="container">
     <div class="title-box">
       <h1>
-        <?php printf( esc_html__( 'Category Archives: %s', 'consult' ), single_cat_title( '', false ) ); ?>
+        <?php echo "All Categories"; ?>
       </h1>
       <ol class="breadcrumb">
         <li><a href="<?php echo esc_url(home_url('/')); ?>"><?php echo esc_html__( 'Home', 'consult' ); ?></a></li>
-        <li><?php echo esc_html__( 'Category', 'consult' ); ?></li>
+        <li><?php echo "Categories" ; ?></li>
       </ol>
     </div>
   </div> <!-- end container -->
@@ -39,13 +36,15 @@ get_header(); ?>
               <div class="job-tab">
                 <div class="nav-wrapper">
                   <ul class="nav">
-                   <li class="active"><a href="#all" data-toggle="tab">ALL</a></li>
+                   <li><a id="all-nav" href="#all" data-toggle="tab">ALL</a></li>
                    <?php
     //  $categories = get_categories();
                    $categories = get_categories(array('exclude'=>array(get_cat_ID('uncategorized'))));
                    foreach( $categories as $category ) {
-                     echo "<li><a id ='".$category->slug."-nav' href='#".$category->slug."' data-toggle='tab'>".$category->name."</a></li>";
-                   }
+                     ?>
+                     <li><a id ="<?php echo $category->slug."-nav";?>" href='<?php echo get_category_link($category->term_id );?>' ><?php echo $category->name?></a></li>
+                     
+                   <?php }
                    ?>
                  </ul>
                </div>

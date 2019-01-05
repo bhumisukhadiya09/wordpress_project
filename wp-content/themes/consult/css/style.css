@@ -172,8 +172,8 @@ URL:            http://themeforest.net/user/themexriver
 ----------------------------------------------------------------*/
 /*---------------------------
 	Fonts
-----------------------------*/
- 
+  ----------------------------*/
+  
 /*--------------------------------------------------------------
 #0.1    Theme Reset Style
 --------------------------------------------------------------*/
@@ -8796,25 +8796,39 @@ nav.sticky, .site-header-style2 nav.sticky2, .site-header-style3 nav.sticky2, .s
 }
 
 .list-products {
-width: 100%;
-display: inline-flex;
-}
-.post-product {
-width: 33.33%;
-padding: 10px;
-    text-align: center;
-    width: 33.33%;
-    padding: 15px;
-    text-align: center;
-    border: 2px double;
-    margin: 10px;
-}
-.entry-media-product {
+  /* width: 100%; */
 
 }
-.entry-title-product {
-
+.product-media {
+  width: 100%;
+  height: 300px;
+  overflow: hidden;
+  background-color: #ffffff;
+  position: relative;
+  border: solid 1px #ededed;
+  margin-bottom: 5px;
 }
-.entry-details-product {
+.product-media:hover {
+  border: solid 1px #ededed;
+  -webkit-box-shadow: 2px 2px 7px 1px rgba(153,153,153,0.5);
+  -moz-box-shadow: 2px 2px 7px 1px rgba(153,153,153,0.5);
+  box-shadow: 2px 2px 7px 1px rgba(153,153,153,0.5);
+}
+.product-media img {
+  display: block;
+  margin: auto;
+  height: 100%;
+}
+img {
+  max-width: 100%;
+  height: auto;
+}
+.product-content {
+  display: inline-block;
+  padding-bottom: 5px;
+  width: 100%;
+  height: 70px;
+}
+.product-name {
 
 }
