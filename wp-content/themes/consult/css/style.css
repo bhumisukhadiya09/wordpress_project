@@ -8805,14 +8805,14 @@ nav.sticky, .site-header-style2 nav.sticky2, .site-header-style3 nav.sticky2, .s
   overflow: hidden;
   background-color: #ffffff;
   position: relative;
-  border: solid 1px #ededed;
+ /* border: solid 1px #ededed;*/
   margin-bottom: 5px;
 }
 .product-media:hover {
-  border: solid 1px #ededed;
-  -webkit-box-shadow: 2px 2px 7px 1px rgba(153,153,153,0.5);
+  /* border: solid 1px #ededed; */
+  /* -webkit-box-shadow: 2px 2px 7px 1px rgba(153,153,153,0.5);
   -moz-box-shadow: 2px 2px 7px 1px rgba(153,153,153,0.5);
-  box-shadow: 2px 2px 7px 1px rgba(153,153,153,0.5);
+  box-shadow: 2px 2px 7px 1px rgba(153,153,153,0.5); */
 }
 .product-media img {
   display: block;
@@ -8830,5 +8830,12 @@ img {
   height: 70px;
 }
 .product-name {
+  text-align: center;
+}
 
+.pb-10 {
+  padding-bottom: 10px;
+}
+.text-align-left {
+  text-align: left !important;
 }

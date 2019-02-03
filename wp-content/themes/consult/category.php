@@ -54,7 +54,8 @@ get_header(); ?>
                   <div class='list-products row'>
                     <?php
                     $posts = get_posts([
-                      'post_type' => 'product'
+                      'post_type' => 'product',
+                      'numberposts'       => -1
                     ]);
                     foreach($posts as $post){
                       ?>
@@ -67,8 +68,6 @@ get_header(); ?>
                         <div class="product-content">
                           <div class="product-name">
                             <?php echo $post->post_title;?>
-                            <br/>
-                            <?php echo get_post_meta($post->ID,"price",true); ?>
                           </div>
                         </div>
                       </div>
@@ -81,6 +80,7 @@ get_header(); ?>
                       <div class='list-products row'>";
                       $posts = get_posts([
                         'post_type' => 'product',
+                        'numberposts'       => -1
     // 'post_status' => 'publish',
     // 'numberposts' => -1,
                         'category'=>$category->cat_ID

@@ -9,10 +9,6 @@ get_header('single'); ?>
         <div class="container">
             <div class="title-box">
                 <h1><?php the_title();?></h1>
-                <ol class="breadcrumb">
-                    <li><a href="<?php echo esc_url(home_url('/')); ?>"><?php echo esc_html__( 'Home', 'consult' ); ?></a></li>
-                    <li><?php the_title();?></li>
-                </ol>
             </div>
         </div> <!-- end container -->
     </section>
@@ -41,7 +37,7 @@ get_header('single'); ?>
          </div>
          <div class="col-md-5 col-sm-12">
             <div class="product-content">
-               <div class="product-name">
+               <div class="product-name pb-10 text-align-left">
                   <span style="font-size:22px;">
                  <?php the_title(); ?>
                   </span>
@@ -49,7 +45,6 @@ get_header('single'); ?>
                <hr class="fullwidth-divider" style="margin-top:-8px;">
                <div class="product-discription">
                   <ul style="line-height:35px;">
-                     <li id="ContentPlaceHolder1_licategory" style="background:#ededed;padding-left:15px;"><strong>Product Id :</strong> <?php echo $current_post_id; ?>  </li>
                      
                      <li id="ContentPlaceHolder1_licategory" style="background:#f7f7f7;padding-left:15px;"><strong>Category :</strong> <?php 
                      $cat_array =array();
@@ -59,7 +54,6 @@ get_header('single'); ?>
                      }
                      echo implode(", ",$cat_array);
                      ?>  </li>
-                     <li id="ContentPlaceHolder1_licategory" style="background:#ededed;padding-left:15px;"><strong>Price :</strong> <?php echo get_post_meta($post->ID,"price",true); ?>  </li>
                   </ul>
                </div>
             </div>
