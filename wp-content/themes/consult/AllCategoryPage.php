@@ -82,10 +82,7 @@ get_header(); ?>
                       <div class='list-products row'>";
                       $posts = get_posts([
                         'post_type' => 'product',
-    // 'post_status' => 'publish',
-    // 'numberposts' => -1,
                         'category'=>$category->cat_ID
-    // 'order'    => 'ASC'
                       ]);
 //   echo "<pre>";
                       foreach($posts as $post){

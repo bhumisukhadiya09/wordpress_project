@@ -573,4 +573,9 @@ function consult_after_import_setup() {
 }
 add_action( 'pt-ocdi/after_import', 'consult_after_import_setup' );
 
+function my_theme_scripts() {
+    wp_enqueue_script( 'my-great-script', get_template_directory_uri() . '/js/jquery.min.js');
+}
+add_action( 'wp_enqueue_scripts', 'my_theme_scripts' );
+
 ?>
